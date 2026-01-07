@@ -1,6 +1,6 @@
 """
-SIM Akademik - Main Application
-Entry point untuk Streamlit Multi-Page App dengan desain yang disempurnakan
+SIM Akademik - Modern Minimalist Design
+Versi alternatif dengan desain yang lebih modern dan clean
 """
 
 import streamlit as st
@@ -21,269 +21,219 @@ st.set_page_config(
     page_title="SIM Akademik - Beranda",
     page_icon="🎓",
     layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'mailto:support@simakademik.edu',
-        'Report a bug': 'https://github.com/fadenco/sim-akademik/issues',
-        'About': "# SIM Akademik v1.0\nSistem Informasi Manajemen Akademik"
-    }
+    initial_sidebar_state="expanded"
 )
 
 # ============================================
-# CUSTOM CSS STYLING
+# MODERN MINIMALIST CSS
 # ============================================
 st.markdown("""
     <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* Global styles */
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
         /* Main container */
         .block-container {
-            padding-top: 1rem;
-            padding-bottom: 2rem;
-            max-width: 1400px;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+            max-width: 1600px;
         }
         
-        /* Hide Streamlit branding */
+        /* Hide defaults */
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
+        header {visibility: hidden;}
         
-        /* Sidebar styling */
+        /* Sidebar */
         [data-testid="stSidebar"] {
-            background: linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%);
-        }
-        
-        /* Sidebar navigation items */
-        [data-testid="stSidebarNav"] {
-            background-color: transparent;
-            padding-top: 1rem;
-        }
-        
-        [data-testid="stSidebarNav"] > ul {
-            padding-top: 1rem;
-        }
-        
-        [data-testid="stSidebarNav"] li {
-            margin: 0.25rem 0;
+            background: #FFFFFF;
+            border-right: 1px solid #F1F5F9;
         }
         
         [data-testid="stSidebarNav"] a {
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            margin: 0.25rem 0;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
         }
         
         [data-testid="stSidebarNav"] a:hover {
-            background-color: rgba(59, 130, 246, 0.1);
-            transform: translateX(5px);
+            background: #F8FAFC;
+            transform: translateX(4px);
         }
         
         [data-testid="stSidebarNav"] a[aria-current="page"] {
-            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            background: #3B82F6;
             color: white !important;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
         }
         
-        /* Button styling */
+        /* Buttons */
         .stButton > button {
-            border-radius: 0.5rem;
+            border-radius: 0.75rem;
             font-weight: 500;
-            transition: all 0.3s ease;
-            border: none;
+            border: 1px solid #E5E7EB;
+            transition: all 0.2s ease;
+            height: 100px;
+            padding: 1rem;
         }
         
         .stButton > button:hover {
+            border-color: #3B82F6;
+            background: #EFF6FF;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
         }
         
-        /* Metric styling */
+        /* Metrics */
         [data-testid="stMetricValue"] {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: #1E3A8A;
+            color: #0F172A;
         }
         
         [data-testid="stMetricLabel"] {
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             font-weight: 500;
             color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         
-        /* Card styling */
-        .info-card {
+        /* Cards */
+        .modern-card {
             background: white;
             border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            border: 1px solid #E2E8F0;
+            padding: 2rem;
+            border: 1px solid #F1F5F9;
             transition: all 0.3s ease;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
-        .info-card:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-            transform: translateY(-2px);
+        .modern-card:hover {
+            border-color: #E5E7EB;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
         
-        /* Stats card */
-        .stats-card {
+        /* Hero section */
+        .hero-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 1rem;
+            padding: 4rem 2rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            margin: -1rem -1rem 3rem -1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-item {
+            background: white;
             padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid #F1F5F9;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-            margin-bottom: 1rem;
         }
         
-        /* Feature item */
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            margin: 0.5rem 0;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
+        /* Feature list */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
             background: white;
-        }
-        
-        .feature-item:hover {
-            background-color: #F8FAFC;
-            transform: translateX(5px);
-        }
-        
-        /* Quick action button custom */
-        .quick-action-btn {
-            display: inline-block;
-            padding: 1rem 1.5rem;
-            background: white;
-            border: 2px solid #E2E8F0;
-            border-radius: 0.75rem;
-            text-align: center;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid #F1F5F9;
             transition: all 0.3s ease;
-            cursor: pointer;
-            margin: 0.5rem;
         }
         
-        .quick-action-btn:hover {
+        .feature-card:hover {
             border-color: #3B82F6;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(59, 130, 246, 0.1);
         }
         
-        /* Alert boxes */
-        .stAlert {
-            border-radius: 0.75rem;
-            border-left: 4px solid #3B82F6;
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: #0F172A;
+            font-weight: 700;
         }
         
         /* Divider */
         hr {
-            margin: 2rem 0;
+            margin: 3rem 0;
             border: none;
-            border-top: 2px solid #E2E8F0;
-        }
-        
-        /* Expander */
-        .streamlit-expanderHeader {
-            font-weight: 600;
-            color: #1E3A8A;
-            border-radius: 0.5rem;
+            border-top: 1px solid #F1F5F9;
         }
     </style>
 """, unsafe_allow_html=True)
 
 # ============================================
-# SESSION STATE INITIALIZATION
+# SESSION STATE
 # ============================================
 def init_session_state():
-    """Initialize session state variables"""
     if 'initialized' not in st.session_state:
         st.session_state.initialized = True
-    
     if 'df_clean' not in st.session_state:
         st.session_state.df_clean = None
-    
     if 'file_name' not in st.session_state:
         st.session_state.file_name = None
-    
     if 'upload_time' not in st.session_state:
         st.session_state.upload_time = None
-    
-    if 'upload_history' not in st.session_state:
-        st.session_state.upload_history = []
-    
-    if 'theme' not in st.session_state:
-        st.session_state.theme = 'light'
 
 # ============================================
 # MAIN FUNCTION
 # ============================================
 def main():
-    """Main application entry point"""
-    
-    # Initialize session state
     init_session_state()
     
-    # ============================================
-    # HEADER SECTION
-    # ============================================
+    # Hero Section
     st.markdown("""
-        <div style="
-            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
-            padding: 2rem;
-            margin: -1rem -1rem 2rem -1rem;
-            border-radius: 0 0 1rem 1rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        ">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div style="font-size: 3rem;">🎓</div>
-                    <div>
-                        <h1 style="color: white; margin: 0; font-size: 2rem; font-weight: 700;">
-                            SIM AKADEMIK
-                        </h1>
-                        <p style="color: rgba(255, 255, 255, 0.9); margin: 0.5rem 0 0 0; font-size: 1rem;">
-                            Sistem Informasi Manajemen Akademik
-                        </p>
-                    </div>
-                </div>
-                <div style="text-align: right; color: white;">
-                    <div style="font-size: 0.875rem; opacity: 0.9;">Version 1.0</div>
-                    <div style="font-size: 0.75rem; opacity: 0.7;">© 2024 FADEN CO</div>
-                </div>
+        <div class="hero-section">
+            <div style="position: relative; z-index: 1;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">🎓</div>
+                <h1 style="color: white; margin: 0; font-size: 3rem; font-weight: 800;">
+                    SIM Akademik
+                </h1>
+                <p style="color: rgba(255, 255, 255, 0.95); font-size: 1.25rem; margin: 1rem 0 0 0; font-weight: 400;">
+                    Sistem Informasi Manajemen Akademik Modern
+                </p>
             </div>
         </div>
     """, unsafe_allow_html=True)
     
-    # ============================================
-    # WELCOME SECTION
-    # ============================================
-    st.markdown("""
-        <div style="text-align: center; margin: 2rem 0;">
-            <h1 style="font-size: 2.5rem; color: #1E3A8A; margin: 0;">
-                🎓 SELAMAT DATANG DI SIM AKADEMIK
-            </h1>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("---")
-    
-    # ============================================
-    # QUICK ACTION BUTTONS (Top)
-    # ============================================
-    st.markdown("""
-        <h2 style="text-align: center; color: #1E3A8A; margin-bottom: 1rem;">
-            🚀 Akses Cepat
-        </h2>
-    """, unsafe_allow_html=True)
+    # Quick Actions
+    st.markdown("<h2 style='text-align: center; margin-bottom: 2rem;'>⚡ Akses Cepat</h2>", unsafe_allow_html=True)
     
     cols = st.columns(5)
-    
-    quick_buttons = [
+    actions = [
         ("📤", "Upload Data", "pages/5_📤_Upload_Data.py"),
         ("📊", "Dashboard", "pages/2_📊_Analisis_Performa.py"),
         ("🎓", "Prediksi", "pages/3_🎓_Prediksi_Kelulusan.py"),
@@ -291,290 +241,123 @@ def main():
         ("📋", "Laporan", "pages/6_📋_Laporan.py")
     ]
     
-    for idx, (icon, label, page_path) in enumerate(quick_buttons):
+    for idx, (icon, label, page) in enumerate(actions):
         with cols[idx]:
-            if st.button(
-                f"{icon}\n\n**{label}**",
-                use_container_width=True,
-                key=f"quick_action_{idx}",
-                help=f"Navigasi ke {label}"
-            ):
-                st.switch_page(page_path)
+            if st.button(f"{icon}\n\n**{label}**", use_container_width=True, key=f"action_{idx}"):
+                st.switch_page(page)
     
     st.markdown("---")
     
-    # ============================================
-    # MAIN CONTENT AREA
-    # ============================================
-    col1, col2 = st.columns([2, 1])
+    # Main Content
+    col1, col2 = st.columns([2, 1], gap="large")
     
     with col1:
-        render_about_section()
+        render_features()
     
     with col2:
-        render_stats_widget()
-        st.markdown("")
-        render_recent_activity()
+        render_stats()
     
-    # ============================================
-    # FOOTER
-    # ============================================
     st.markdown("---")
+    
+    # Footer
     render_footer()
 
-# ============================================
-# CONTENT SECTIONS
-# ============================================
-
-def render_about_section():
-    """Render about section with system features"""
-    
+def render_features():
+    """Render features section"""
     st.markdown("""
-        <div class="info-card">
-            <h2 style="color: #1E3A8A; margin-top: 0;">
-                📊 Tentang Sistem
-            </h2>
-            <p style="color: #64748B; font-size: 1rem; line-height: 1.6;">
-                <strong>SIM Akademik</strong> adalah Sistem Informasi Manajemen yang dirancang khusus untuk 
-                membantu pengelolaan dan analisis data akademik siswa secara efisien dan modern.
+        <div class="modern-card">
+            <h2 style="margin-top: 0;">🌟 Fitur Unggulan</h2>
+            <p style="color: #64748B; line-height: 1.6;">
+                Platform lengkap untuk manajemen dan analisis data akademik dengan teknologi terkini.
             </p>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("")
-    
-    # Features section
-    st.markdown("""
-        <div class="info-card">
-            <h3 style="color: #1E3A8A; margin-top: 0;">
-                ✨ Fitur Utama
-            </h3>
         </div>
     """, unsafe_allow_html=True)
     
     features = [
-        ("✅", "Manajemen Data Akademik", "Upload, cleaning, dan pengelolaan data nilai"),
-        ("✅", "Analisis Performa", "Visualisasi dan analisis data siswa"),
-        ("✅", "Prediksi Kelulusan", "Sistem prediksi berbasis machine learning"),
-        ("✅", "Early Warning System", "Deteksi dini siswa berisiko"),
-        ("✅", "Laporan Otomatis", "Generate laporan dalam berbagai format")
+        ("📊", "Data Management", "Upload dan kelola data nilai dengan mudah"),
+        ("📈", "Analytics", "Dashboard interaktif dan visualisasi data"),
+        ("🤖", "AI Prediction", "Prediksi kelulusan berbasis machine learning"),
+        ("⚠️", "Early Warning", "Deteksi dini siswa berisiko"),
+        ("📋", "Smart Reports", "Generate laporan otomatis"),
+        ("🔒", "Secure", "Data aman dan terenkripsi")
     ]
+    
+    st.markdown('<div class="feature-grid">', unsafe_allow_html=True)
     
     for icon, title, desc in features:
         st.markdown(f"""
-            <div class="feature-item">
-                <div style="font-size: 1.5rem;">{icon}</div>
-                <div>
-                    <strong style="color: #1E3A8A;">{title}</strong><br>
-                    <span style="color: #64748B; font-size: 0.9rem;">{desc}</span>
-                </div>
+            <div class="feature-card">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">{icon}</div>
+                <h4 style="margin: 0.5rem 0; color: #0F172A;">{title}</h4>
+                <p style="color: #64748B; font-size: 0.875rem; margin: 0;">{desc}</p>
             </div>
         """, unsafe_allow_html=True)
     
-    st.markdown("")
-    
-    # Quick start guide
-    st.markdown("""
-        <div class="info-card">
-            <h3 style="color: #1E3A8A; margin-top: 0;">
-                🚀 Mulai Dengan
-            </h3>
-            <ol style="color: #64748B; line-height: 2;">
-                <li><strong>Upload Data</strong> - Unggah file Excel data leger</li>
-                <li><strong>Analisis</strong> - Lihat dashboard dan statistik</li>
-                <li><strong>Prediksi</strong> - Gunakan model prediksi kelulusan</li>
-                <li><strong>Laporan</strong> - Export hasil analisis</li>
-            </ol>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    st.info("💡 **Tips:** Gunakan menu navigasi di sidebar untuk berpindah antar halaman.")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-def render_stats_widget():
-    """Render statistics widget"""
-    
+def render_stats():
+    """Render statistics"""
     st.markdown("""
-        <div class="stats-card">
-            <h3 style="margin: 0 0 1rem 0; color: white;">📊 Statistik Sistem</h3>
+        <div class="modern-card">
+            <h3 style="margin-top: 0;">📊 Statistik</h3>
         </div>
     """, unsafe_allow_html=True)
-    
-    st.markdown("")
     
     if st.session_state.df_clean is not None:
         df = st.session_state.df_clean
         
-        # Calculate real statistics
         total_students = df['NISN'].nunique() if 'NISN' in df.columns else len(df)
         avg_score = df['NILAI'].mean() if 'NILAI' in df.columns else 0
         
-        st.metric(
-            "👥 Total Siswa",
-            f"{total_students:,}",
-            help="Jumlah siswa unik"
-        )
+        st.metric("Total Siswa", f"{total_students:,}")
+        st.metric("Rata-rata", f"{avg_score:.1f}")
         
-        st.metric(
-            "📈 Rata-rata Nilai",
-            f"{avg_score:.1f}",
-            help="Rata-rata nilai keseluruhan"
-        )
-        
-        # Calculate pass rate
         if 'NILAI' in df.columns:
-            pass_count = len(df[df['NILAI'] >= 60])
-            pass_rate = (pass_count / len(df)) * 100
-            st.metric(
-                "🎯 Tingkat Kelulusan",
-                f"{pass_rate:.0f}%",
-                delta=f"{pass_rate - 70:.0f}%" if pass_rate >= 70 else f"{pass_rate - 70:.0f}%",
-                delta_color="normal" if pass_rate >= 70 else "inverse",
-                help="Persentase nilai >= 60"
-            )
-        
-        # At-risk students
-        if 'NILAI' in df.columns:
-            at_risk = len(df[df['NILAI'] < 60])
-            st.metric(
-                "⚠️ Siswa Berisiko",
-                f"{at_risk}",
-                delta=f"-{at_risk}" if at_risk > 0 else "0",
-                delta_color="inverse",
-                help="Siswa dengan nilai < 60"
-            )
-    
+            pass_rate = (len(df[df['NILAI'] >= 60]) / len(df)) * 100
+            st.metric("Kelulusan", f"{pass_rate:.0f}%")
     else:
-        # Placeholder metrics
-        st.metric("👥 Total Siswa", "-", help="Upload data untuk melihat statistik")
-        st.metric("📈 Rata-rata Nilai", "-", help="Upload data untuk melihat statistik")
-        st.metric("🎯 Tingkat Kelulusan", "-", help="Upload data untuk melihat statistik")
-        st.metric("⚠️ Siswa Berisiko", "-", help="Upload data untuk melihat statistik")
-
-def render_recent_activity():
-    """Render recent activity widget"""
-    
-    st.markdown("""
-        <div class="info-card">
-            <h3 style="color: #1E3A8A; margin-top: 0;">
-                ⚡ Aktivitas Terbaru
-            </h3>
-        </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("")
-    
-    if st.session_state.df_clean is not None:
-        df = st.session_state.df_clean
-        upload_time = st.session_state.upload_time
-        file_name = st.session_state.file_name
-        
-        # Format timestamp
-        if hasattr(upload_time, 'strftime'):
-            time_str = upload_time.strftime('%d/%m/%Y %H:%M')
-        else:
-            time_str = str(upload_time)
-        
-        # Count unique students
-        students = df['NISN'].nunique() if 'NISN' in df.columns else 'N/A'
-        
-        st.success(f"""
-**✅ Data Aktif**
-
-📁 **File:** {file_name}  
-📅 **Upload:** {time_str}  
-📊 **Records:** {len(df):,}  
-👥 **Siswa:** {students}
-        """)
-    else:
-        st.info("""
-**ℹ️ Belum ada data yang diupload**
-
-Silakan upload data melalui halaman **📤 Upload Data** untuk mulai menggunakan sistem.
-        """)
-        
-        if st.button("📤 Upload Data", type="primary", use_container_width=True, key="upload_from_activity"):
-            st.switch_page("pages/5_📤_Upload_Data.py")
+        st.info("Upload data untuk melihat statistik")
 
 def render_footer():
-    """Render footer yang BENAR tanpa menampilkan code"""
-    
-    current_year = datetime.now().year
-    
-    # Footer container
+    """Clean footer"""
     st.markdown(f"""
         <div style="
             text-align: center;
             padding: 2rem;
-            background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
+            background: #F8FAFC;
             border-radius: 1rem;
-            margin-top: 2rem;
-            border: 1px solid #E2E8F0;
+            border: 1px solid #F1F5F9;
         ">
-            <div style="margin-bottom: 1rem;">
-                <h3 style="color: #1E3A8A; margin: 0; font-size: 1.25rem; font-weight: 700;">
-                    🎓 SIM Akademik
-                </h3>
-                <p style="color: #64748B; margin: 0.5rem 0; font-size: 0.875rem;">
-                    Sistem Informasi Manajemen Akademik
-                </p>
-            </div>
-            
-            <div style="margin: 1rem 0;">
-                <span style="color: #3B82F6; margin: 0 0.75rem; font-size: 0.875rem; font-weight: 500;">
-                    📧 support@simakademik.edu
-                </span>
-                <span style="color: #CBD5E1;">|</span>
-                <span style="color: #3B82F6; margin: 0 0.75rem; font-size: 0.875rem; font-weight: 500;">
-                    📚 Dokumentasi
-                </span>
-                <span style="color: #CBD5E1;">|</span>
-                <span style="color: #3B82F6; margin: 0 0.75rem; font-size: 0.875rem; font-weight: 500;">
-                    🐛 Report Bug
-                </span>
-            </div>
-            
-            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #E2E8F0;">
-                <p style="color: #94A3B8; margin: 0; font-size: 0.75rem;">
-                    © {current_year} <strong>FADEN CO</strong> - All Rights Reserved
-                </p>
-                <p style="color: #94A3B8; margin: 0.25rem 0 0 0; font-size: 0.7rem;">
-                    Version 1.0.0 | Made with ❤️ using Streamlit
-                </p>
-            </div>
+            <p style="color: #64748B; margin: 0; font-size: 0.875rem;">
+                © {datetime.now().year} <strong style="color: #0F172A;">SIM Akademik</strong> by FADEN CO
+            </p>
+            <p style="color: #94A3B8; margin: 0.5rem 0 0 0; font-size: 0.75rem;">
+                Version 1.0.0 | Made with ❤️
+            </p>
         </div>
     """, unsafe_allow_html=True)
 
-# ============================================
-# SIDEBAR CONTENT
-# ============================================
+# Sidebar
 with st.sidebar:
     st.markdown("""
-        <div style="text-align: center; padding: 1rem 0;">
-            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎓</div>
-            <h2 style="margin: 0; color: #1E3A8A; font-size: 1.25rem;">SIM Akademik</h2>
-            <p style="margin: 0.25rem 0 0 0; color: #64748B; font-size: 0.875rem;">
-                Sistem Informasi Manajemen
+        <div style="text-align: center; padding: 2rem 0;">
+            <div style="font-size: 3rem;">🎓</div>
+            <h2 style="margin: 0.5rem 0 0 0; color: #0F172A;">SIM Akademik</h2>
+            <p style="color: #64748B; font-size: 0.875rem; margin: 0.5rem 0 0 0;">
+                v1.0.0
             </p>
         </div>
     """, unsafe_allow_html=True)
     
     st.markdown("---")
     
-    # Quick actions in sidebar
-    st.markdown("### ⚡ Aksi Cepat")
-    
     col1, col2 = st.columns(2)
-    
     with col1:
-        if st.button("🔄 Refresh", use_container_width=True, help="Refresh halaman", key="sidebar_refresh"):
+        if st.button("🔄", use_container_width=True, help="Refresh"):
             st.rerun()
-    
     with col2:
-        if st.button("ℹ️ Info", use_container_width=True, help="Informasi sistem", key="sidebar_info"):
-            st.info("SIM Akademik v1.0\n\nDeveloped by FADEN CO")
+        if st.button("ℹ️", use_container_width=True, help="Info"):
+            st.info("SIM Akademik v1.0")
 
-# ============================================
-# RUN APPLICATION
-# ============================================
 if __name__ == "__main__":
     main()
