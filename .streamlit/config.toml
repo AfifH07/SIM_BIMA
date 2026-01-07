@@ -1,6 +1,23 @@
-[client]
-showSidebarNavigation = false
+[theme]
+primaryColor = "#3B82F6"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F3F4F6"
+textColor = "#1F2937"
+font = "sans serif"
 
-[ui]
-hideTopBar = false
-hideSidebarNav = true
+[server]
+port = 8501
+enableCORS = false
+enableXsrfProtection = false
+maxUploadSize = 200
+
+[browser]
+gatherUsageStats = false
+
+[client]
+showSidebarNavigation = true
+toolbarMode = "minimal"
+
+[runner]
+magicEnabled = true
+fastReruns = true
