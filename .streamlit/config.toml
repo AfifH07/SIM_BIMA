@@ -1,0 +1,6 @@
+[client]
+showSidebarNavigation = false
+
+[ui]
+hideTopBar = false
+hideSidebarNav = true

@@ -1,0 +1,12 @@
+/* Custom styling tambahan */
+.stApp {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3 {
+    color: #1E3A8A;
+}
+
+.stButton > button {
+    border-radius: 8px !important;
+}
